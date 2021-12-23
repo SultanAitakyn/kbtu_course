@@ -6,20 +6,16 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
 import {AuthResponseInterface} from 'src/app/auth/types/authResponse.interface';
 import {LoginRequestInterface} from 'src/app/auth/types/login.interface';
+import {CourseInterface} from 'src/app/shared/types/course.interface';
+import {CommentInterface, ResponseCommentInterface} from 'src/app/course/types/comment.interface';
 
 @Injectable()
 
-export class AuthService {
+export class CourseActionsService {
   constructor(private http: HttpClient) {
   }
 
-  register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
-    debugger
-    return this.http.post<AuthResponseInterface>(environment.apiUrl + 'register', data).pipe(map((response) => (response.user)));
+  addToFavourites(favourites: number[], id: number) {
+    return this.http.patch(environment.apiUrl + `users/${id}`, {favourites});
   }
-
-  login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
-    return this.http.post<AuthResponseInterface>(environment.apiUrl + 'login', data).pipe(map((response) => (response.user)));
-  }
-
 }

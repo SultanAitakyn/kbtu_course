@@ -56,12 +56,12 @@
 
         <div class="text-gray-600 flex">
           <div class="flex mr-4 items-center">
-            <mat-icon class="hover:text-red-700 cursor-pointer mr-2">thumb_up</mat-icon>
-            <p>{{course?.likes}}</p>
+            <mat-icon (click)="likeCourse()" class="hover:text-red-700 cursor-pointer mr-2">thumb_up</mat-icon>
+            <p>{{course?.likes?.length}}</p>
           </div>
           <div class="flex items-center">
-            <mat-icon class="hover:text-red-700 cursor-pointer mr-2">thumb_down</mat-icon>
-            <p>{{course?.dislikes}}</p>
+            <mat-icon (click)="dislikeCourse()"  class="hover:text-red-700 cursor-pointer mr-2">thumb_down</mat-icon>
+            <p>{{course?.dislikes?.length}}</p>
           </div>
         </div>
 
@@ -79,11 +79,11 @@
       <div class="flex flex-wrap -mx-3 mb-6">
         <h2 class="px-4 pt-3 pb-2 text-lg">Add a new comment</h2>
         <div class="w-full md:w-full px-3 mb-2 mt-2">
-          <textarea class="bg-gray-100 rounded border text-gray-700 border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body" placeholder='Type Your Comment' required></textarea>
+          <textarea [(ngModel)]="currentComment" class="bg-gray-100 rounded border text-gray-700 border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body" placeholder='Type Your Comment' required></textarea>
         </div>
         <div class="w-full md:w-full flex items-start md:w-full px-3">
           <div class="-mr-1">
-            <button mat-flat-button color="primary">Post comment</button>
+            <button (click)="postComment()" mat-flat-button color="primary">Post comment</button>
           </div>
         </div>
       </div>
@@ -91,20 +91,17 @@
   </div>
 
 
-  <h2 class="mt-4 text-xl">All comments</h2>
-  <mat-list>
-    <mat-list-item>
-      <mat-icon mat-list-icon>face</mat-icon>
-      <div mat-line>Sultan</div>
-      <div mat-line> Отличный курс! </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <mat-icon mat-list-icon>face</mat-icon>
-      <div mat-line>Daniel</div>
-      <div mat-line> Shit </div>
-    </mat-list-item>
-  </mat-list>
+  <div *ngIf="comments">
+    <h2 class="mt-4 text-xl">All comments</h2>
+    <mat-list *ngFor="let comment of comments">
+      <mat-list-item>
+        <mat-icon mat-list-icon>face</mat-icon>
+        <div mat-line>{{comment.email}}</div>
+        <div mat-line>{{comment.comment}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
 
 </div>
 

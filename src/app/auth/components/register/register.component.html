@@ -1,49 +1,22 @@
 <div class="auth-page">
   <h2 class="text-center mb-0 text-2xl">Sign Up</h2>
   <p class="text-center underline mb-4"><a [routerLink]="['/login']">Have an account?</a></p>
-  <form class="flex flex-col items-center">
+  <form (ngSubmit)="handleSubmit()" [formGroup]="form" class="flex flex-col items-center">
     <mat-form-field color="accent" appearance="outline">
       <mat-label>Enter your name</mat-label>
-      <input matInput placeholder="Name" required>
+      <input matInput placeholder="Name" required formControlName="username">
+      <mat-error>Required field</mat-error>
     </mat-form-field>
     <mat-form-field color="accent" appearance="outline">
       <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" required>
+      <input matInput placeholder="pat@example.com" required formControlName="email">
+      <mat-error>Not correct format or empty</mat-error>
     </mat-form-field>
     <mat-form-field color="accent" appearance="outline">
       <mat-label>Enter your password</mat-label>
-      <input matInput required>
+      <input matInput required formControlName="password">
+      <mat-error>Required field</mat-error>
     </mat-form-field>
-    <button mat-flat-button color="accent" [routerLink]="['']">Sign Up</button>
+    <button mat-flat-button color="accent">Sign Up</button>
   </form>
-<!--  <div class="container page">-->
-<!--    <div class="row">-->
-<!--      <div class="col-md-6 offset-md-3 col-xs-12">-->
-<!--        <h1 class="text-xs-center">Sign Up</h1>-->
-<!--        <p class="text-xs-center">-->
-<!--          <a [routerLink]="['/login']">Have an account?</a>-->
-<!--        </p>-->
-<!--        Backend errors are here-->
-<!--        <form [formGroup]="form" (ngSubmit)="handleSubmit()">-->
-<!--          <fieldset>-->
-<!--            <fieldset class="form-group">-->
-<!--              <input type="text" class="form-control form-control-lg"-->
-<!--                     placeholder="Username" formControlName="username">-->
-<!--            </fieldset>-->
-<!--            <fieldset class="form-group">-->
-<!--              <input type="text" class="form-control form-control-lg"-->
-<!--                     placeholder="Email" formControlName="email">-->
-<!--            </fieldset>-->
-<!--            <fieldset class="form-group">-->
-<!--              <input type="text" class="form-control form-control-lg"-->
-<!--                     placeholder="Password" formControlName="password">-->
-<!--            </fieldset>-->
-<!--            <button [disabled]="isSubmitting$ | async"  class="btn btn-lg btn-primary pull-xs-right">-->
-<!--              Sign up-->
-<!--            </button>-->
-<!--          </fieldset>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 </div>

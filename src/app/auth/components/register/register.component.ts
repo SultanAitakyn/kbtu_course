@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit{
   initializeForm() {
     this.form = this.fb.group({
       username: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     })
   }
@@ -41,9 +41,9 @@ export class RegisterComponent implements OnInit{
   }
 
   handleSubmit(): void {
-    console.log(this.form.value);
     const request: RegisterRequestInterface = {
-      user: this.form.value
+      ...this.form.value,
+      favourites: []
     }
     this.store.dispatch(registerAction({request}));
   }

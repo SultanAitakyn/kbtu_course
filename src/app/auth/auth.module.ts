@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {AppRoutingModule} from 'src/app/app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import {HomeComponent} from 'src/app/home/components/home/home.component';
+import {LoginEffect} from 'src/app/auth/store/effects/login.effect';
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([RegisterEffect]),
+    EffectsModule.forFeature([RegisterEffect, LoginEffect]),
     AppRoutingModule,
     MatFormFieldModule, MatInputModule, MatButtonModule
   ],

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseInterface} from 'src/app/shared/types/course.interface';
 import {MockedDataCourses} from 'src/app/shared/data/mockedData';
+import {HomeService} from 'src/app/home/services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +10,19 @@ import {MockedDataCourses} from 'src/app/shared/data/mockedData';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private homeService: HomeService) { }
 
   categories = ['HTML', 'CSS', 'JavaScript', 'Angular'];
-  lastUploadedCourses: CourseInterface[] = MockedDataCourses;
+  lastUploadedCourses: CourseInterface[] = [];
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData() {
+    this.homeService.getLastAddedCourses().subscribe((courses) => {
+      this.lastUploadedCourses = courses;
+    })
   }
 
 }

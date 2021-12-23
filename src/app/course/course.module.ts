@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CourseComponent } from './course/course.component';
-import {RouterModule} from '@angular/router';
+import { CourseComponent } from './components/course/course.component';
+import {RouterModule, Routes} from '@angular/router';
 import {AppRoutingModule} from 'src/app/app-routing.module';
 import {MatIconModule} from '@angular/material/icon';
 import {SafePipe} from 'src/app/pipes/safe.pipe';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
 
-const routes = [
+const routes: Routes = [
   {
     path: 'course/:id',
     component: CourseComponent
@@ -28,7 +29,8 @@ const routes = [
     MatIconModule,
     MatListModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ]
 })
 export class CourseModule {

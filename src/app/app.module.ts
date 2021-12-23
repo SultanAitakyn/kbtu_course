@@ -7,7 +7,7 @@ import {AuthModule} from 'src/app/auth/auth.module';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from 'src/environments/environment';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {EffectsModule} from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -18,6 +18,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {ProfileModule} from 'src/app/profile/profile.module';
 import {SubscriptionPlanModule} from 'src/app/subscription-plan/subscription-plan.module';
 import {CourseModule} from 'src/app/course/course.module';
+import {HttpConfigInterceptor} from 'src/app/shared/interceptor/HttpConfigInterceptor.interceptor';
+import {FavouritesModule} from 'src/app/favourites/favourites.module';
+import {TopBarModule} from 'src/app/top-bar/top-bar.module';
 
 @NgModule({
   declarations: [
@@ -43,9 +46,11 @@ import {CourseModule} from 'src/app/course/course.module';
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-    SubscriptionPlanModule
+    SubscriptionPlanModule,
+    FavouritesModule,
+    TopBarModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }],
   exports: [
   ],
   bootstrap: [AppComponent]

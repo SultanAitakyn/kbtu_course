@@ -3,7 +3,7 @@ export interface CourseInterface {
   description: string,
   image: string,
   id: number,
-  likes: number,
-  dislikes: number,
+  likes: string[],
+  dislikes: string[],
   video: string
 }
